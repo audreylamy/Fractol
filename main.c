@@ -6,12 +6,11 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/05 17:03:56 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/05 17:22:56 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 void		ft_create_image(t_env *tmp, char *str)
 {

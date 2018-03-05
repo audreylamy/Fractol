@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/05 16:43:41 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/05 18:09:46 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 
 # define EXIT 53
 # define RESET 49
+# define RIGHT 124
+# define LEFT 123
+# define UP 126
+# define DOWN 125
 
 # define ZOOM_UP 69
 # define ZOOM_DOWN 78
@@ -70,6 +74,9 @@ typedef struct	s_env
 	void	*mlx;
 	void	*win;
 	t_img	img;
+	float 	moveX;
+	float 	moveY;
+	int		zoom_f;
 }				t_env;
 
 int				main(int argc, char **argv);
@@ -82,9 +89,8 @@ void			ft_create_barnsleyfern(t_env *tmp);
 void			fill_pixel(t_env *t, int x, int y, int color);
 void			fill_pixel_julia(t_env *t, int x, int y, t_colorrgb color);
 int				my_key_funct(int keycode, t_env *tmp);
-unsigned long 	createRGBA(int r, int g, int b, int a);
-t_colorhsv		createHSV(int h, int s, int v);
-t_colorhsv		RGBtoHSV(double r, double g, double b);
 t_colorrgb		HSVtoRGB(double r, double g, double b);
+
+void			ft_redraw_image(t_env *tmp);
 
 #endif
