@@ -6,13 +6,14 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:29:37 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/05 17:05:15 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/06 14:53:20 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include<stdio.h>
-#include<time.h>
+#include <stdio.h>
+#include <time.h> 
+#include <limits.h>
 
 void ft_create_barnsleyfern(t_env *tmp)
 {
@@ -23,17 +24,16 @@ void ft_create_barnsleyfern(t_env *tmp)
 	double y1;
 	int diceThrow;
 	t_colorrgb rgb;
-	// time_t t;
-	// srand((unsigned)time(&t));
 	iter = 500000;
 	x0 = 0;
 	y0 = 0;
  
-	while(iter>0)
+	while(iter > 0)
 	{
-		diceThrow = rand()%100;
- 
-		if (diceThrow==0){
+		diceThrow = rand() % 100;
+	
+		if (diceThrow == 0)
+		{
 			x1 = 0;
 			y1 = 0.16 * y0;
 		}
@@ -52,8 +52,8 @@ void ft_create_barnsleyfern(t_env *tmp)
 			x1 = 0.85 * x0 + 0.04 * y0;
 			y1 = -0.04 * x0 + 0.85 * y0 + 1.6;
 		}
-		rgb = HSVtoRGB(iter % 150, 1, 1);
- 		fill_pixel_julia(tmp, 110 * x1 + WINDOW_L / 2.0, 110 * y1, rgb);
+		rgb = HSVtoRGB(323, 1, 0.43);
+		fill_pixel(tmp, 110 * x1 + WINDOW_L / 2.0, 110 * y1, createRGBA(rgb.r, rgb.g, rgb.b));
 		x0 = x1;
 		y0 = y1;
 		iter--;

@@ -6,7 +6,7 @@
 #    By: alamy <alamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 18:07:22 by lesanche          #+#    #+#              #
-#    Updated: 2018/03/05 17:24:02 by alamy            ###   ########.fr        #
+#    Updated: 2018/03/06 14:59:26 by alamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = \
 				barnsley.c \
 				tricorn.c \
 				color.c \
-				events.c
+				keyboard.c \
+				mouse.c
 
 OBJ = $(SRC:.c=.o)
 

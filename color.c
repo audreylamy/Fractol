@@ -6,23 +6,24 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 17:23:18 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/05 18:28:50 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/06 14:39:36 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-void fill_pixel_julia(t_env *t, int x, int y, t_colorrgb rgbcolor)
+void fill_pixel(t_env *t, int x, int y, int color)
 {	
- 	//((int*)tmp->img.data)[(y * WINDOW_L) + x] = color;
-
 	if (x >= 0 && y >= 0 && x < WINDOW_L && y < WINDOW_H)
 	{
-		t->img.data[y * t->img.size_bits + x * t->img.bpp / 8] = rgbcolor.r;
-		t->img.data[y * t->img.size_bits + x * t->img.bpp / 8 + 1] = rgbcolor.g;
-		t->img.data[y * t->img.size_bits + x * t->img.bpp / 8 + 2] = rgbcolor.b;
+		((int*)t->img.data)[(y * WINDOW_L) + x] = color;
 	}
+}
+
+int createRGBA(int r, int g, int b)
+{   
+    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
 t_colorrgb HSVtoRGB(double h, double s, double v)
@@ -42,7 +43,7 @@ t_colorrgb HSVtoRGB(double h, double s, double v)
 	else
 	{
 		h = h / 60;
-		i = (int)trunc(h);
+		i = (int)floor(h);
 		f = h - i;
 		p = v * (1.0 - s);
 		q = v * (1.0 - (s * f));
@@ -89,6 +90,12 @@ t_colorrgb HSVtoRGB(double h, double s, double v)
         	r = v;
         	g = t;
         	b = p;
+        break;
+
+		case -1:
+        	r = v;
+        	g = p;
+        	b = q;
         break;
 
 		default:

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/05 18:09:46 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/06 18:28:33 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@
 
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
+# define CLIC_RIGHT 2
+# define CLIC_LEFT 1
 
 typedef struct	s_colorrgb
 {
-	unsigned char		r;
-	unsigned char		g;
-	unsigned char		b;
+	int		r;
+	int		g;
+	int		b;
 }				t_colorrgb;
 
 typedef struct	s_colorhsv
@@ -62,7 +64,7 @@ typedef struct	s_colorhsv
 typedef struct	s_img
 {
 	void	*img_ptr;
-	char	*data;
+	int	*data;
 	int		bpp;
 	int		size_bits;
 	int		endian;
@@ -77,20 +79,32 @@ typedef struct	s_env
 	float 	moveX;
 	float 	moveY;
 	int		zoom_f;
+	double 	xmin;
+	double 	ymin;
+	double 	xmax;
+	double 	ymax;
+	int		fractal;
 }				t_env;
 
 int				main(int argc, char **argv);
 void			ft_create_image(t_env *tmp, char *str);
+void			fill_pixel(t_env *t, int x, int y, int color);
+int				my_key_funct(int keycode, t_env *tmp);
+int				my_mouse_funct(int button, int x, int y, t_env *tmp);
+// void			event_clic(int button, t_env *tmp);
+t_colorrgb		HSVtoRGB(double r, double g, double b);
+void			ft_redraw_image(t_env *tmp);
+int				createRGBA(int r, int g, int b);
+
+/*
+** Fractals
+*/
+
 void 			ft_create_julia(t_env *tmp);
 void			ft_create_mendelbrot(t_env *tmp);
 void			ft_burn_ship(t_env *tmp);
 void			ft_create_tricorn(t_env *tmp);
 void			ft_create_barnsleyfern(t_env *tmp);
-void			fill_pixel(t_env *t, int x, int y, int color);
-void			fill_pixel_julia(t_env *t, int x, int y, t_colorrgb color);
-int				my_key_funct(int keycode, t_env *tmp);
-t_colorrgb		HSVtoRGB(double r, double g, double b);
-
-void			ft_redraw_image(t_env *tmp);
+void			init_fractal(t_env *tmp);
 
 #endif
