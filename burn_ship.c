@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:08:52 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/06 18:33:48 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 17:06:05 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ void ft_burn_ship(t_env *tmp)
 	double pr, pi;           //real and imaginary part of the pixel p
   	double newRe, newIm, oldRe, oldIm;   //real and imaginary parts of new and old z
   	t_colorrgb rgb;
-  	int maxIterations = 300;//after how much iterations the function should stop
+  	int maxIterations = 300 + tmp->fractal.iter;//after how much iterations the function should stop
 	int x;
 	int y;
 	int i;
 	x = 0;
+	if (maxIterations == 50)
+		tmp->fractal.iter = 0;
   	while (x < WINDOW_L)
 	{
 		y = 0;
  		while (y < WINDOW_H)
   		{
-   			pr = tmp->xmin + ((tmp->xmax - tmp->xmin) / WINDOW_L * x) + tmp->moveX;
-    		pi = tmp->ymin + ((tmp->ymax - tmp->ymin) / WINDOW_H * y) + tmp->moveY;
+   			pr = tmp->fractal.xmin + ((tmp->fractal.xmax - tmp->fractal.xmin) / WINDOW_L * x) + tmp->fractal.moveX;
+    		pi = tmp->fractal.ymin + ((tmp->fractal.ymax - tmp->fractal.ymin) / WINDOW_H * y) + tmp->fractal.moveY;
     		newRe = newIm = oldRe = oldIm = 0; 
 			i = 0;
     		while (i < maxIterations)

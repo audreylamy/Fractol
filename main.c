@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 13:40:41 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 15:37:18 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,28 @@ void		ft_create_image(t_env *tmp, char *str)
 	init_fractal(tmp);
 	if (ft_strcmp(str, "julia") == 0)
 	{
-		tmp->fractal = 1;
+		tmp->num_f= 1;
+		init_julia(tmp);
 		ft_create_julia(tmp);
 	}
 	else if (ft_strcmp(str, "mandelbrot") == 0)
 	{
-		tmp->fractal = 2;
+		tmp->num_f= 2;
 		ft_create_mandelbrot(tmp);
 	}
 	else if (ft_strcmp(str, "burnship") == 0)
 	{
-		tmp->fractal = 3;
+		tmp->num_f= 3;
 		ft_burn_ship(tmp);
 	}
 	else if (ft_strcmp(str, "barnsley") == 0)
 	{
-		tmp->fractal = 4;
+		tmp->num_f= 4;
 		ft_create_barnsleyfern(tmp);
 	}
 	else if (ft_strcmp(str, "tricorn") == 0)
 	{
-		tmp->fractal = 5;
+		tmp->num_f= 5;
 		ft_create_tricorn(tmp);
 	}
 	else
@@ -67,7 +68,7 @@ int	main(int argc, char **argv)
 		ft_create_image(&tmp, argv[1]);
 		mlx_hook(tmp.win, 2, 0, my_key_funct, &tmp.mlx);
 		mlx_hook(tmp.win, 4, 0, my_mouse_funct, &tmp.mlx);
-		// mlx_hook(tmp.win, 6, 0, my_motion_hook, &tmp.mlx);
+		mlx_hook(tmp.win, 6, 0, my_motion_hook, &tmp.mlx);
 		mlx_loop(tmp.mlx);
 	}
 	return (0);

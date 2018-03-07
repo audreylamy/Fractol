@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 14:15:55 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/07 10:37:03 by alamy            ###   ########.fr       */
+/*   Created: 2018/03/07 16:33:52 by alamy             #+#    #+#             */
+/*   Updated: 2018/03/07 16:34:23 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,51 @@
 
 void init_fractal(t_env *tmp)
 {
-	tmp->xmax = 2.4;
-	tmp->xmin = -2.4;
-	tmp->ymax = 1.5;
-	tmp->ymin = -1.5;
+	tmp->fractal.xmax = 2.4;
+	tmp->fractal.xmin = -2.4;
+	tmp->fractal.ymax = 1.5;
+	tmp->fractal.ymin = -1.5;
+}
+
+void init_julia(t_env *tmp)
+{
+	tmp->julia.cRe = -0.7;
+  	tmp->julia.cIm = 0.27015;
+	tmp->julia.stop = 0;
 }
 
 void ft_create_julia(t_env *tmp)
 {
-	double cRe, cIm;           //real and imaginary part of the constant c, determinate shape of the Julia Set
+	// double cRe, cIm;           //real and imaginary part of the constant c, determinate shape of the Julia Set
   	double newRe, newIm, oldRe, oldIm;   //real and imaginary parts of new and old
 	t_colorrgb rgb;
- 	int maxIterations = 300; //after how much iterations the function should stop
+ 	int maxIterations = 200 + tmp->fractal.iter; //after how much iterations the function should stop
 	int y;
 	int x;
 	int i;
-	// cRe = -0.038088;
-  	// cIm = 0.97;
-
-	// cRe = -1.417022285618;
-  	// cIm = 0;
-
-	// cRe = 0.285;
-  	// cIm = 0.013;
-	
-	// cRe = 0.285;
-  	// cIm = 0.01;
-
-	// cRe = 0.3;
-  	// cIm = 0.5;
-
-  	cRe = -0.7;
-  	cIm = 0.27015;
-
+	ft_putnbr(maxIterations);
+	if (maxIterations == 50)
+		tmp->fractal.iter = 0;
 	x = 0;
 	while(x < WINDOW_L)
 	{
 		y = 0;
   		while(y < WINDOW_H)
   		{
-			newRe = tmp->xmin + ((tmp->xmax - tmp->xmin) / WINDOW_L * x) + tmp->moveX;
-			newIm = tmp->ymin + ((tmp->ymax - tmp->ymin) / WINDOW_H * y) + tmp->moveY;
+			newRe = tmp->fractal.xmin + ((tmp->fractal.xmax - tmp->fractal.xmin) / WINDOW_L * x) + tmp->fractal.moveX;
+			newIm = tmp->fractal.ymin + ((tmp->fractal.ymax - tmp->fractal.ymin) / WINDOW_H * y) + tmp->fractal.moveY;
 			i = 0;	
     		while (i < maxIterations)
    			{
       			oldRe = newRe;
       			oldIm = newIm;
-     			newRe = oldRe * oldRe - oldIm * oldIm + cRe;
-     		 	newIm = 2 * oldRe * oldIm + cIm;
+     			newRe = oldRe * oldRe - oldIm * oldIm + tmp->julia.cRe;
+     		 	newIm = 2 * oldRe * oldIm + tmp->julia.cIm;
      			if((newRe * newRe + newIm * newIm) > 4) 
 				 	break;
 				i++;
     		}
-			rgb = HSVtoRGB(i % 256, 1, i < maxIterations);
+			rgb = HSVtoRGB(i % 256 + tmp->c, 1, i < maxIterations);
 			fill_pixel(tmp, x, y, createRGBA(rgb.r, rgb.g, rgb.b));
 			y++;
 		}	

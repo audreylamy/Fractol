@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:21:25 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/07 10:37:33 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 15:40:29 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void ft_create_mandelbrot(t_env *tmp)
 		y = 0;
  		while (y < WINDOW_H)
   		{
-   			pr = tmp->xmin + ((tmp->xmax - tmp->xmin) / WINDOW_L * x) + tmp->moveX;
-    		pi = tmp->ymin + ((tmp->ymax - tmp->ymin) / WINDOW_H * y) + tmp->moveY;
+   			pr = tmp->fractal.xmin + ((tmp->fractal.xmax - tmp->fractal.xmin) / WINDOW_L * x) + tmp->fractal.moveX;
+    		pi = tmp->fractal.ymin + ((tmp->fractal.ymax - tmp->fractal.ymin) / WINDOW_H * y) + tmp->fractal.moveY;
     		newRe = newIm = oldRe = oldIm = 0; 
 			i = 0;
     		while (i < maxIterations)

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:29:37 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 11:26:33 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 17:04:36 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void ft_create_barnsleyfern(t_env *tmp)
 	int		zoom_b;
 	int diceThrow;
 	t_colorrgb rgb;
-	iter = 500000;
+	iter = 500000 + tmp->fractal.iter;
 	x0 = 0;
 	y0 = 0;
 	zoom_b = 110;
+	if (iter == 50)
+		tmp->fractal.iter = 0;
  
 	while(iter > 0)
 	{
