@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:29:37 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/06 14:53:20 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 11:26:33 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void ft_create_barnsleyfern(t_env *tmp)
 	double y0;
 	double x1;
 	double y1;
+	int		zoom_b;
 	int diceThrow;
 	t_colorrgb rgb;
 	iter = 500000;
 	x0 = 0;
 	y0 = 0;
+	zoom_b = 110;
  
 	while(iter > 0)
 	{
@@ -52,8 +54,8 @@ void ft_create_barnsleyfern(t_env *tmp)
 			x1 = 0.85 * x0 + 0.04 * y0;
 			y1 = -0.04 * x0 + 0.85 * y0 + 1.6;
 		}
-		rgb = HSVtoRGB(323, 1, 0.43);
-		fill_pixel(tmp, 110 * x1 + WINDOW_L / 2.0, 110 * y1, createRGBA(rgb.r, rgb.g, rgb.b));
+		rgb = HSVtoRGB(323, 1, 0.46);
+		fill_pixel(tmp, zoom_b * x1 + WINDOW_L / 2.0, zoom_b * y1, createRGBA(rgb.r, rgb.g, rgb.b));
 		x0 = x1;
 		y0 = y1;
 		iter--;

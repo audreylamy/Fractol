@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mendelbrot.c                                       :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:21:25 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/06 18:24:30 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 10:37:33 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void ft_create_mendelbrot(t_env *tmp)
+void ft_create_mandelbrot(t_env *tmp)
 {
 	double pr, pi;           //real and imaginary part of the pixel p
   	double newRe, newIm, oldRe, oldIm;   //real and imaginary parts of new and old z

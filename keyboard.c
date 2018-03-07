@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:46:20 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/06 18:33:04 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 10:31:29 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_redraw_image(t_env *tmp)
 	if (tmp->fractal == 1)
 		ft_create_julia(tmp);
 	else if (tmp->fractal == 2)
-		ft_create_mendelbrot(tmp);
+		ft_create_mandelbrot(tmp);
 	else if (tmp->fractal == 3)
 		ft_burn_ship(tmp);
 	else if (tmp->fractal == 4)
@@ -40,22 +40,22 @@ int		my_key_funct(int keycode, t_env *tmp)
 	}
 	if (keycode == LEFT)
 	{
-		tmp->moveX += 0.01;
+		tmp->moveX += 0.1;
 		ft_redraw_image(tmp);
 	}
 	if (keycode == RIGHT)
 	{
-		tmp->moveX -= 0.01;
+		tmp->moveX -= 0.1;
 		ft_redraw_image(tmp);
 	}
 	if (keycode == UP)
 	{
-		tmp->moveY += 0.01;
+		tmp->moveY += 0.1;
 		ft_redraw_image(tmp);
 	}
 	if (keycode == DOWN)
 	{
-		tmp->moveY -= 0.01;
+		tmp->moveY -= 0.1;
 		ft_redraw_image(tmp);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/06 18:28:33 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 13:40:57 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@
 # define COLOR_BLUE 5
 # define COLOR_GREEN 11
 
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
 # define CLIC_RIGHT 2
 # define CLIC_LEFT 1
+
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
 
 typedef struct	s_colorrgb
 {
@@ -91,6 +92,7 @@ void			ft_create_image(t_env *tmp, char *str);
 void			fill_pixel(t_env *t, int x, int y, int color);
 int				my_key_funct(int keycode, t_env *tmp);
 int				my_mouse_funct(int button, int x, int y, t_env *tmp);
+int				my_motion_hook(int x, int y, t_env *tmp);
 // void			event_clic(int button, t_env *tmp);
 t_colorrgb		HSVtoRGB(double r, double g, double b);
 void			ft_redraw_image(t_env *tmp);
@@ -100,11 +102,11 @@ int				createRGBA(int r, int g, int b);
 ** Fractals
 */
 
+void			init_fractal(t_env *tmp);
 void 			ft_create_julia(t_env *tmp);
-void			ft_create_mendelbrot(t_env *tmp);
+void			ft_create_mandelbrot(t_env *tmp);
 void			ft_burn_ship(t_env *tmp);
 void			ft_create_tricorn(t_env *tmp);
 void			ft_create_barnsleyfern(t_env *tmp);
-void			init_fractal(t_env *tmp);
 
 #endif

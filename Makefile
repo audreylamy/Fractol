@@ -6,7 +6,7 @@
 #    By: alamy <alamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 18:07:22 by lesanche          #+#    #+#              #
-#    Updated: 2018/03/06 14:59:26 by alamy            ###   ########.fr        #
+#    Updated: 2018/03/07 10:24:13 by alamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLIBX_DIR = minilibx
 SRC = \
 				main.c \
 				julia.c \
-				mendelbrot.c \
+				mandelbrot.c \
 				burn_ship.c \
 				barnsley.c \
 				tricorn.c \

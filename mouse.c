@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:59:39 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/06 18:44:38 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/07 13:44:40 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,36 @@ int		my_mouse_funct(int button, int x, int y, t_env *tmp)
 	double mouseRe;
 	double mouseIm;
 	
-	ft_putnbr(x);
-	ft_putchar(' ');
-	ft_putnbr(y);
-	ft_putchar('\n');
 	mouseRe = (double)x / (WINDOW_L / (tmp->xmax - tmp->xmin)) + tmp->xmin;
 	mouseIm = (double)y / (WINDOW_H / (tmp->ymax - tmp->ymin)) + tmp->ymin;
 	if (button == CLIC_LEFT)
 	{
 		t_zoom(tmp, mouseRe, mouseIm, 2);
 	}
+	if (button == CLIC_RIGHT)
+	{
+		t_zoom(tmp, mouseRe, mouseIm, 0.5);
+	}
+	if (button == SCROLL_UP)
+	{
+		t_zoom(tmp, mouseRe, mouseIm, 2);
+	}
+	if (button == SCROLL_DOWN)
+	{
+		t_zoom(tmp, mouseRe, mouseIm, 0.5);
+	}
 	ft_redraw_image(tmp);
 	return (0);
+}
+
+int		my_motion_hook(int x, int y, t_env *tmp)
+{
+	double mouseRe;
+	double mouseIm;
+	
+	mouseRe = (double)x / (WINDOW_L / (tmp->xmax - tmp->xmin)) + tmp->xmin;
+	mouseIm = (double)y / (WINDOW_H / (tmp->ymax - tmp->ymin)) + tmp->ymin;
+	t_zoom(tmp, mouseRe, mouseIm, 1.1);
+	ft_redraw_image(tmp);
+	return(0);
 }
