@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 17:11:51 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 15:57:47 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,18 @@ typedef struct s_julia
 {
 	double	cRe;
 	double 	cIm;
-	int		stop;
 }				t_julia;
+
+typedef struct s_mandel
+{
+	double	cRe;
+	double 	cIm;
+}				t_mandel;
+
+typedef struct s_barn
+{
+	double 	zoom_b;
+}				t_barn;
 
 typedef struct s_fractal
 {
@@ -93,6 +103,7 @@ typedef struct s_fractal
 	double 	xmax;
 	double 	ymax;
 	int		iter;
+	int 	stop;
 }				t_fractal;				
 
 typedef struct	s_env
@@ -102,12 +113,15 @@ typedef struct	s_env
 	t_img	img;
 	int		num_f;
 	t_julia julia;
+	t_mandel mandel;
+	t_barn  barn;
 	t_fractal fractal;
 	double 	c;
 }				t_env;
 
 int				main(int argc, char **argv);
 void			ft_create_image(t_env *tmp, char *str);
+void			ft_fractal(t_env *tmp, char *str);
 void			ft_redraw_image(t_env *tmp);
 void			fill_pixel(t_env *t, int x, int y, int color);
 int				createRGBA(int r, int g, int b);
@@ -131,5 +145,9 @@ void			ft_create_mandelbrot(t_env *tmp);
 void			ft_burn_ship(t_env *tmp);
 void			ft_create_tricorn(t_env *tmp);
 void			ft_create_barnsleyfern(t_env *tmp);
+
+void			ft_create_serpinski(t_env *tmp);
+
+void			ft_create_string(t_env *t);
 
 #endif

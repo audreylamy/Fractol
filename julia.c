@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 16:33:52 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 16:34:23 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 16:48:19 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void init_fractal(t_env *tmp)
 	tmp->fractal.xmin = -2.4;
 	tmp->fractal.ymax = 1.5;
 	tmp->fractal.ymin = -1.5;
+	tmp->fractal.stop = 0;
+	tmp->c = 0;
 }
 
 void init_julia(t_env *tmp)
 {
 	tmp->julia.cRe = -0.7;
   	tmp->julia.cIm = 0.27015;
-	tmp->julia.stop = 0;
 }
 
 void ft_create_julia(t_env *tmp)
@@ -36,7 +37,6 @@ void ft_create_julia(t_env *tmp)
 	int y;
 	int x;
 	int i;
-	ft_putnbr(maxIterations);
 	if (maxIterations == 50)
 		tmp->fractal.iter = 0;
 	x = 0;

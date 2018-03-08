@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:59:39 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 15:59:27 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 14:06:46 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int		my_mouse_funct(int button, int x, int y, t_env *tmp)
 	{
 		t_zoom(tmp, mouseRe, mouseIm, 0.5);
 	}
+	if (button == 8)
+	{
+		t_zoom(tmp, mouseRe, mouseIm, 0.5);
+	}
 	ft_redraw_image(tmp);
 	return (0);
 }
@@ -59,7 +63,7 @@ int		my_motion_hook(int x, int y, t_env *tmp)
 
 	y = 0;
 	largeur = WINDOW_L/2;
-	if (x >= 0 && y >= 0 && x <= WINDOW_L && y <= WINDOW_H && tmp->julia.stop != 1)
+	if (x >= 0 && y >= 0 && x <= WINDOW_L && y <= WINDOW_H && tmp->fractal.stop != 1)
 	{
 		if (x > 0 && x < largeur)
 		{

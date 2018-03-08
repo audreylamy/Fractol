@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:08:52 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 15:40:50 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 16:51:16 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_create_tricorn(t_env *tmp)
 				  	break;
 				i++;
 			}
-			rgb = HSVtoRGB(i % 256, 1, i < maxIterations);
+			rgb = HSVtoRGB(i % 256 + tmp->c, 1, i < maxIterations);
 			fill_pixel(tmp, x, y, createRGBA(rgb.r, rgb.g, rgb.b));
 			y++;
 		}

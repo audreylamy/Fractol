@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:46:20 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/07 16:54:35 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 16:45:19 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_redraw_image(t_env *tmp)
 	else if (tmp->num_f == 5)
 		ft_create_tricorn(tmp);
 	mlx_put_image_to_window(tmp->mlx, tmp->win, tmp->img.img_ptr, 0, 0);
+	ft_create_string(tmp);
 }
 
 int		my_key_funct(int keycode, t_env *tmp)
@@ -57,24 +58,42 @@ int		my_key_funct(int keycode, t_env *tmp)
 		tmp->c -= 5;
 	else if (keycode == STOP)
 	{
-		 if (tmp->julia.stop == 0)
-            tmp->julia.stop = 1;
-        else if (tmp->julia.stop == 1)
-            tmp->julia.stop = 0;
+		 if (tmp->fractal.stop == 0)
+            tmp->fractal.stop = 1;
+        else if (tmp->fractal.stop == 1)
+            tmp->fractal.stop = 0;
 	}
 	else if (keycode == JULIA)
 	{
+		init_fractal(tmp);
 		init_julia(tmp);
 		tmp->num_f = 1;
 	}
 	else if (keycode == MANDELBROT)
+	{
+		init_fractal(tmp);
 		tmp->num_f = 2;
+	}
 	else if (keycode == BURNSHIP)
+	{
+		init_fractal(tmp);
 		tmp->num_f = 3;
+	}
 	else if (keycode == BARNSLEY)
+	{
+		init_fractal(tmp);
 		tmp->num_f = 4;
+	}
 	else if (keycode == TRICORN)
+	{
+		init_fractal(tmp);
 		tmp->num_f = 5;
+	}
+	else if (keycode == 8)
+	{
+		tmp->barn.zoom_b += 5;
+		tmp->fractal.iter += 500000;
+	}
 	ft_redraw_image(tmp);
 	return (0);
 }

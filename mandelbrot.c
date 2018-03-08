@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:21:25 by Deydou            #+#    #+#             */
-/*   Updated: 2018/03/07 15:40:29 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 14:10:08 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void ft_create_mandelbrot(t_env *tmp)
 	double pr, pi;           //real and imaginary part of the pixel p
   	double newRe, newIm, oldRe, oldIm;   //real and imaginary parts of new and old z
 	t_colorrgb rgb;
-  	int maxIterations = 300;//after how much iterations the function should stop
+  	int maxIterations = 200 + tmp->fractal.iter;//after how much iterations the function should stop
 	int x;
 	int y;
 	int i;
 	x = 0;
+	if (maxIterations == 50)
+		tmp->fractal.iter = 0;
   	while (x < WINDOW_L)
 	{
 		y = 0;
@@ -42,7 +44,7 @@ void ft_create_mandelbrot(t_env *tmp)
 				  	break;
 				i++;
 			}
-			rgb = HSVtoRGB(i % 256, 1, i < maxIterations);
+			rgb = HSVtoRGB(i % 256 + tmp->c, 1, i < maxIterations);
 			fill_pixel(tmp, x, y, createRGBA(rgb.r, rgb.g, rgb.b));
 			y++;
 		}

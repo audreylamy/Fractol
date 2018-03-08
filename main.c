@@ -6,53 +6,59 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/03/07 15:37:18 by alamy            ###   ########.fr       */
+/*   Updated: 2018/03/08 16:00:53 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		ft_create_image(t_env *tmp, char *str)
+void	ft_fractal(t_env *tmp, char *str)
 {
-	tmp->img.img_ptr = mlx_new_image(tmp->mlx, WINDOW_L, WINDOW_H);
-	tmp->img.data = (int*)mlx_get_data_addr(tmp->img.img_ptr, &tmp->img.bpp,
-	&tmp->img.size_bits, &tmp->img.endian);
-	init_fractal(tmp);
 	if (ft_strcmp(str, "julia") == 0)
 	{
-		tmp->num_f= 1;
+		tmp->num_f = 1;
 		init_julia(tmp);
 		ft_create_julia(tmp);
 	}
 	else if (ft_strcmp(str, "mandelbrot") == 0)
 	{
-		tmp->num_f= 2;
+		tmp->num_f = 2;
 		ft_create_mandelbrot(tmp);
 	}
 	else if (ft_strcmp(str, "burnship") == 0)
 	{
-		tmp->num_f= 3;
+		tmp->num_f = 3;
 		ft_burn_ship(tmp);
 	}
 	else if (ft_strcmp(str, "barnsley") == 0)
 	{
-		tmp->num_f= 4;
+		tmp->num_f = 4;
 		ft_create_barnsleyfern(tmp);
 	}
 	else if (ft_strcmp(str, "tricorn") == 0)
 	{
-		tmp->num_f= 5;
+		tmp->num_f = 5;
 		ft_create_tricorn(tmp);
 	}
 	else
 	{
-		ft_putstr("usage: ./fractol [julia | mandelbrot | burnship | tricorn | barnsley]");
+		ft_putstr("usage:./fractol [julia|mandelbrot|burnship|tricorn|barnsley]");
 		exit(0);
 	}
-	mlx_put_image_to_window(tmp->mlx, tmp->win, tmp->img.img_ptr, 0, 0);
 }
 
-int	main(int argc, char **argv)
+void	ft_create_image(t_env *tmp, char *str)
+{
+	tmp->img.img_ptr = mlx_new_image(tmp->mlx, WINDOW_L, WINDOW_H);
+	tmp->img.data = (int*)mlx_get_data_addr(tmp->img.img_ptr, &tmp->img.bpp,
+	&tmp->img.size_bits, &tmp->img.endian);
+	init_fractal(tmp);
+	ft_fractal(tmp, str);
+	mlx_put_image_to_window(tmp->mlx, tmp->win, tmp->img.img_ptr, 0, 0);
+	ft_create_string(tmp);
+}
+
+int		main(int argc, char **argv)
 {
 	t_env tmp;
 
